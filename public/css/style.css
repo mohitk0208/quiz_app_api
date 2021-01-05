@@ -1,0 +1,114 @@
+/* :root {
+
+} */
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-image: linear-gradient(to right,rgb(65, 134, 212),rgb(19, 141, 19));
+    font-family: monospace;
+    margin: 10px 10%;
+    color: rgba(245, 245, 245, 0.89);
+}
+
+nav {
+    display: flex;
+    padding: 10px 20px;
+    align-items: center;    
+    justify-content: space-between;
+    background-image: linear-gradient(to right,rgb(75, 159, 228),rgb(29, 172, 89));
+    border-radius: 10px;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.7);
+}
+
+nav h1 {
+    font-size: 3rem;
+}
+
+.navlinks {
+    display: flex;
+    list-style: none;
+}
+.navlinks li {
+    padding: 10px;
+    margin: 0 10px;
+    font-size: 2rem;
+}
+
+.navlinks li a {
+    text-decoration: none;
+    letter-spacing: 2px;
+}
+
+.navlinks li:hover {
+    background-color: rgba(255, 255, 255, 0.5);
+    transform: scale(1.2);
+    transition: transform 100ms ease-in-out;
+}
+
+
+.form-container {
+    margin-top: 3%;
+}
+
+.form-container h1 {
+    font-size: 2rem;
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.3);
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 3%;
+}
+
+.form-field {
+    margin: 10px;
+}
+
+.form-field > * {
+    display: block;
+}
+
+.form-field label {
+    font-size: 1.5rem;
+    margin: 10px 0;
+}
+
+.form-field select {
+    width: 100%;
+    padding: 10px;
+    font-size: 1rem;
+    border-radius: 5px;
+}
+
+.form-field input {
+    width: 100%;
+    padding: 10px;
+    font-size: 0.7rem;
+    /* border-radius: 5px; */
+}
+
+.form-field ul {
+    list-style: none;
+}
+
+.form-field ul li {
+    margin: 10px 0;
+    width: 100%
+}
+
+.form-container form button {
+    background-image: linear-gradient(to right,rgb(5, 141, 141),rgb(107, 158, 30));
+    padding: 10px;
+    font-size: 1.2rem;
+    border-radius: 10px;
+    color: white;
+}
+
+.form-container form button:hover {
+    background-image: linear-gradient(to right,cyan,greenyellow);
+    color: black;
+}

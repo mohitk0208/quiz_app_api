@@ -1,0 +1,86 @@
+<%- include('../partials/header.ejs',{title:"Quiz App | HOME"}) %>
+
+<div class="form-container">
+	<h1 class="form-heading">ADD QUESTIONS</h1>
+
+	<form class="add-form" action="/api/add" method="post" onsubmit="(e) => e.preventDefault()">
+
+                
+        <div class="form-field">
+            <label for="category">category</label>
+            <select name="category" id="category">
+                <option value="9">General Knowledge</option>
+                <option value="10">Entertainment - Books</option>
+                <option value="11">Entertainment - Film</option>
+                <option value="12">Entertainment - Music</option>
+                <option value="13">Entertainment - Musicals & Theaters</option>
+                <option value="14">Entertainment - Television</option>
+                <option value="15">Entertainment - Video Games</option>
+                <option value="16">Entertainment - Board Games</option>
+                <option value="29">Entertainment - Comics</option>
+                <option value="32">Entertainment - Cartoon & Animations</option>
+                <option value="17">Science & Nature</option>
+                <option value="18">Science : Computer</option>
+                <option value="19">Science : Mathematics</option>
+                <option value="30">Science : Gadgets</option>
+                <option value="20">Mythology</option>
+                <option value="21">Sports</option>
+                <option value="22">Geography</option>
+                <option value="23">History</option>
+                <option value="24">Politics</option>
+                <option value="25">Art</option>
+                <option value="26">Celebrities</option>
+                <option value="27">Animals</option>
+                <option value="28">Vehicles</option>
+            </select>
+        </div>
+
+        <div class="form-field">
+            <label for="difficulty">Difficulty</label>
+            <select name="difficulty" id="difficulty">
+                <option value="easy">EASY</option>
+                <option value="medium">MEDIUM</option>
+                <option value="hard">HARD</option>
+            </select>
+        </div>
+
+		<div class="form-field">
+            <label for="question">Question</label>
+            <input type="text" name="question" id="question">
+        </div>
+        
+        <div class="form-field">
+            <!-- <label for="type">Type</label> -->
+            <input type="hidden" name="type" value="multiple">
+            <!-- <select name="type" id="type">
+                <option value="multiple">multiple</option>
+            </select> -->
+        </div>
+        
+        <div class="form-field">
+            <label for="correct_answer">Correct Answer</label>
+            <input type="text" name="correct_amswer" id="correct_amswer">
+        </div>
+
+        <div class="form-field">
+            <label for="incorrect_answers">Incorrect Answers</label>
+
+            <ul class="incorrect_answers">
+                <li>
+                    <input type="text" name="incorrect_answers--1" id="">
+                </li>
+                <li>
+                    <input type="text" name="incorrect_answers--2" id="">
+                </li>
+                <li>
+                    <input type="text" name="incorrect_answers--3" id="">
+                </li>
+            </ul>
+        </div>
+
+        <button type="submit">SUBMIT</button>
+        
+	</form>
+</div>
+
+<%- include("../partials/footer.ejs") %>

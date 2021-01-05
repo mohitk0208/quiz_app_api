@@ -4,6 +4,7 @@ const ejs = require("ejs");
 
 const quizRoutes = require("./routes/quiz-routes");
 const mongoose = require("mongoose");
+const fetch = require("node-fetch");
 
 const app = express();
 
@@ -15,8 +16,13 @@ app.get("/", (req, res) => {
 	res.render("pages/home");
 });
 
-app.get("/pages/approve", (req, res) => {
-	res.render("pages/approve");
+app.get("/pages/approve", async (req, res) => {
+	const response = await fetch("http://localhost:3000/api/approve");
+
+	const responseData = await response.json();
+
+	console.log(responseData);
+	res.render("pages/approve", { questions: responseData });
 });
 
 app.get("/pages/query", (req, res) => {

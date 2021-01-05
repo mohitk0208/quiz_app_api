@@ -6,4 +6,6 @@ const router = express.Router();
 
 router.post("/add", quizControllers.addQuestion);
 
+router.get("/approve",quizControllers.getunapprovedQuestions)
+
 module.exports = router;

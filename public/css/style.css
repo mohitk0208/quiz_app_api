@@ -15,6 +15,10 @@ body {
     color: rgba(245, 245, 245, 0.89);
 }
 
+
+
+/* navigation bar */
+
 nav {
     display: flex;
     padding: 10px 20px;
@@ -50,6 +54,11 @@ nav h1 {
     transition: transform 100ms ease-in-out;
 }
 
+
+
+
+
+/* form styles */
 
 .form-container {
     margin-top: 3%;
@@ -112,3 +121,9 @@ nav h1 {
     background-image: linear-gradient(to right,cyan,greenyellow);
     color: black;
 }
+
+
+
+
+/* approve questions section */
+

@@ -3,6 +3,7 @@ const bodyparser = require("body-parser");
 const ejs = require("ejs");
 
 const quizRoutes = require("./routes/quiz-routes");
+const mongoose = require("mongoose");
 
 const app = express();
 
@@ -22,7 +23,7 @@ app.get("/pages/query", (req, res) => {
 	res.render("pages/query");
 });
 
-app.use("/api",quizRoutes);
+app.use("/api", quizRoutes);
 
 // app.post("/api/add", (req, res) => {
 // 	console.log(req.body);
@@ -30,6 +31,16 @@ app.use("/api",quizRoutes);
 
 const port = 3000;
 
-app.listen(port, () => {
-	console.log(`Server is running at http://localhost:${port}`);
-});
+mongoose
+	.connect(
+		`mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@cluster0.pzfdg.mongodb.net/${process.env.DB_NAME}?retryWrites=true&w=majority`,
+		{ useNewUrlParser: true, useUnifiedTopology: true }
+	)
+	.then(() => {
+		app.listen(port, () => {
+			console.log(`Server is running at http://localhost:${port}`);
+		});
+	})
+	.catch(() => {
+		console.error(err);
+	});

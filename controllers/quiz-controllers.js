@@ -53,17 +53,13 @@ const getunapprovedQuestions = async (req, res) => {
 	}
 };
 
-
-const approveQuestionById = async (req,res) => {
-
+const approveQuestionById = async (req, res) => {
 	const questionId = req.params.id;
 	let question;
 
 	try {
-
 		question = await Question.findById(questionId);
-		
-	}catch(err) {
+	} catch (err) {
 		console.error(err);
 		console.log("something went wrong, could not find the question");
 	}
@@ -72,16 +68,50 @@ const approveQuestionById = async (req,res) => {
 
 	try {
 		await question.save();
-		res.status(200).json({message:"approved the question"})
-	}
-	catch(err) {
+		res.status(200).json({ message: "approved the question" });
+	} catch (err) {
 		console.error(err);
 		console.log("something went wrong, could not update question");
 	}
+};
+
+const getQuestions = async (req, res) => {
+	const { category, difficulty, no_of_questions } = req.query;
+
+	console.log(category, difficulty, no_of_questions);
+
+	const match = {};
+	if (category != 0) match.category = category;
+	if (difficulty !== "any") match.difficulty = difficulty;
+
+	match.approved = true;
+
+	console.log(match);
+
+	let results;
+
+	try {
+		results = await Question.find(match);
+	} catch (err) {
+		console.error(err);
+	}
+
+	const questions = results.map((r) => {
+		return {
+			category: r.category,
+			difficulty: r.difficulty,
+			type: r.type,
+			correct_answer: r.correct_answer,
+			incorrect_answers: r.incorrect_answers,
+		};
+	});
+
+	res.status(200).json({ results: questions });
 
 
-}
- 
+};
+
 exports.addQuestion = addQuestion;
 exports.getunapprovedQuestions = getunapprovedQuestions;
-exports.approveQuestionById = approveQuestionById
+exports.approveQuestionById = approveQuestionById;
+exports.getQuestions = getQuestions;

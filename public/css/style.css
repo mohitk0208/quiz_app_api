@@ -127,3 +127,71 @@ nav h1 {
 
 /* approve questions section */
 
+.questions-container {
+    width: 100%;
+    margin-top: 3%;
+    display: flex;
+    flex-direction: column;
+}
+
+
+.question-block {
+    display: grid;
+    grid-template-columns: 6fr 2fr;
+    background-color: rgba(255, 255, 255, 0.384);
+    padding: 20px;
+}
+
+.question-item {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.question-item .question p {
+    font-size: 1.1rem;
+}
+
+.question-item .options-container {
+    margin-top: 10px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+.options-container .option {
+    padding: 10px;
+}
+
+.options-container .option.correct {
+    background-color: rgba(153, 205, 50, 0.466);
+}
+
+.options-container .option.incorrect {
+    background-color: rgba(255, 99, 71, 0.425);
+}
+
+.question-block .others {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.question-block .others > * {
+    padding: 10px;
+    font-size: 1rem;
+}
+
+.question-block .others .approve-btn {
+    background-color: rgba(0, 128, 0, 0.459);
+}
+
+.question-block .others .approve-btn:hover {
+    background-color: rgba(27, 235, 27, 0.651);
+}
+
+.loading {
+    background-color: grey !important;
+    color: darkslategrey;
+}

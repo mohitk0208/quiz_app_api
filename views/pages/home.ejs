@@ -8,7 +8,7 @@
                 
         <div class="form-field">
             <label for="category">category</label>
-            <select name="category" id="category">
+            <select name="category" id="category" required>
                 <option value="9">General Knowledge</option>
                 <option value="10">Entertainment - Books</option>
                 <option value="11">Entertainment - Film</option>
@@ -37,7 +37,7 @@
 
         <div class="form-field">
             <label for="difficulty">Difficulty</label>
-            <select name="difficulty" id="difficulty">
+            <select name="difficulty" id="difficulty" required>
                 <option value="easy">EASY</option>
                 <option value="medium">MEDIUM</option>
                 <option value="hard">HARD</option>
@@ -46,7 +46,7 @@
 
 		<div class="form-field">
             <label for="question">Question</label>
-            <input type="text" name="question" id="question">
+            <input type="text" name="question" id="question" required>
         </div>
         
         <div class="form-field">
@@ -59,7 +59,7 @@
         
         <div class="form-field">
             <label for="correct_answer">Correct Answer</label>
-            <input type="text" name="correct_answer" id="correct_amswer">
+            <input type="text" name="correct_answer" id="correct_amswer" required>
         </div>
 
         <div class="form-field">
@@ -67,13 +67,13 @@
 
             <ul class="incorrect_answers">
                 <li>
-                    <input type="text" name="incorrect_answer_1" id="">
+                    <input type="text" name="incorrect_answer_1" id="" required>
                 </li>
                 <li>
-                    <input type="text" name="incorrect_answer_2" id="">
+                    <input type="text" name="incorrect_answer_2" id="" required>
                 </li>
                 <li>
-                    <input type="text" name="incorrect_answer_3" id="">
+                    <input type="text" name="incorrect_answer_3" id="" required>
                 </li>
             </ul>
         </div>

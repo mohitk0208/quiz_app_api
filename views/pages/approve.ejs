@@ -3,30 +3,58 @@
 <h1>This is APPROVE Page</h1>
 
 <div class="questions-container">
-    
+	<% questions.forEach(function(q) { %>
+	<div class="question-block">
+		<div class="question-item">
+			<div class="question">
+				<p><%=q.question %></p>
+			</div>
+			<div class="options-container">
+				<p class="option correct"><%=q.correct_answer %></p>
+				<p class="option incorrect"><%=q.incorrect_answers[0] %></p>
+				<p class="option incorrect"><%=q.incorrect_answers[1] %></p>
+				<p class="option incorrect"><%=q.incorrect_answers[2] %></p>
+			</div>
+		</div>
+		<div class="others">
+			<p class="category"><%=q.category %></p>
+			<p class="difficulty"><%=q.difficulty %></p>
+			<button class="approve-btn" data-id="<%=q.id %>">APPROVE</button>
+		</div>
+	</div>
 
-    <div class="question-block">
-
-        <div class="question-item">
-            <div class="question">
-                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Non voluptatem nobis 
-                    id necessitatibus doloremque natus, molestiae repellendus? Earum, eos tempora.</p>
-            </div>
-            <div class="options-container">
-                <p class="option correct">cat</p>
-                <p class="option incorrect">lat</p>
-                <p class="option incorrect">sat</p>
-                <p class="option incorrect">tat</p>
-            </div>
-        </div>
-        <div class="others">
-            <p class="category">9</p>
-            <p class="difficulty">easy</p>
-            <button class="approve-btn">APPROVE</button>
-        </div>
-    </div>
-
-
+	<% }) %>
 </div>
+
+<script>
+	const approveBtns = document.querySelectorAll(".approve-btn");
+
+	approveBtns.forEach((approveBtn) => {
+		approveBtn.addEventListener("click", async (event) => {
+			// console.log(event.target);
+			const btn = event.target;
+
+			const id = btn.getAttribute("data-id");
+
+			btn.classList.add("loading");
+
+			try {
+				const response =  await fetch(`http://localhost:3000/api/approve/${id}`, {
+					method: "PATCH",
+                });
+                
+                const responseData = await response.json();
+                console.log(responseData);
+
+				btn.innerText = "APPROVED";
+				btn.setAttribute("disabled", true);
+			} catch (err) {
+				console.error(err);
+			} finally {
+				btn.classList.remove("loading");
+			}
+		});
+	});
+</script>
 
 <%- include("../partials/footer.ejs") %>

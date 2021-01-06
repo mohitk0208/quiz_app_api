@@ -8,4 +8,6 @@ router.post("/add", quizControllers.addQuestion);
 
 router.get("/approve",quizControllers.getunapprovedQuestions)
 
+router.patch("/approve/:id",quizControllers.approveQuestionById)
+
 module.exports = router;

@@ -22,7 +22,7 @@ app.get("/pages/approve", async (req, res) => {
 	const responseData = await response.json();
 
 	console.log(responseData);
-	res.render("pages/approve", { questions: responseData });
+	res.render("pages/approve", { questions: responseData.questions });
 });
 
 app.get("/pages/query", (req, res) => {

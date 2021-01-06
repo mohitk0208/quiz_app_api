@@ -53,5 +53,35 @@ const getunapprovedQuestions = async (req, res) => {
 	}
 };
 
+
+const approveQuestionById = async (req,res) => {
+
+	const questionId = req.params.id;
+	let question;
+
+	try {
+
+		question = await Question.findById(questionId);
+		
+	}catch(err) {
+		console.error(err);
+		console.log("something went wrong, could not find the question");
+	}
+
+	question.approved = true;
+
+	try {
+		await question.save();
+		res.status(200).json({message:"approved the question"})
+	}
+	catch(err) {
+		console.error(err);
+		console.log("something went wrong, could not update question");
+	}
+
+
+}
+ 
 exports.addQuestion = addQuestion;
 exports.getunapprovedQuestions = getunapprovedQuestions;
+exports.approveQuestionById = approveQuestionById

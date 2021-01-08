@@ -37,6 +37,48 @@ const addQuestion = async (req, res) => {
 	res.redirect("http://localhost:3000");
 };
 
+const updateQuestion = async(req,res) => {
+
+	const id = req.params.id;
+
+	const {
+		category,
+		difficulty,
+		question,
+		type,
+		correct_answer,
+		incorrect_answer_1,
+		incorrect_answer_2,
+		incorrect_answer_3,
+	} = req.body;
+
+	let q;
+	try {
+		q = await Question.findById(id);
+	}
+	catch(err) {
+		console.log(err);
+	}
+
+	q.category = category;
+	q.difficulty = difficulty;
+	q.question = question;
+	q.type = type;
+	q.correct_answer = correct_answer;
+	q.incorrect_answers = [incorrect_answer_1,incorrect_answer_2,incorrect_answer_3]
+
+	try {
+		await q.save();
+	} catch (error) {
+		console.error(err);
+	}
+
+	console.log("updated");
+
+	res.redirect("/pages/approve")
+
+}
+
 const getunapprovedQuestions = async (req, res) => {
 	let unapprovedQuestions;
 	try {
@@ -91,7 +133,7 @@ const getQuestionById = async(req,res) => {
 		console.error(error);
 	}
 
-	res.json({question});
+	res.json({question:question.toObject({getters:true})});
 
 }
 
@@ -145,6 +187,7 @@ const deleteQuestion = async (req, res) => {
 };
 
 exports.addQuestion = addQuestion;
+exports.updateQuestion = updateQuestion;
 exports.getunapprovedQuestions = getunapprovedQuestions;
 exports.approveQuestionById = approveQuestionById;
 exports.getQuestionById = getQuestionById;

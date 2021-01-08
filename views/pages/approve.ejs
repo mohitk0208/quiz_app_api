@@ -20,6 +20,7 @@
 			<p class="category"><%=q.category %></p>
 			<p class="difficulty"><%=q.difficulty %></p>
 			<button class="approve-btn" data-id="<%=q.id %>">APPROVE</button>
+			<button class="delete-btn" data-id="<%=q.id %>">DELETE</button>
 		</div>
 	</div>
 
@@ -28,6 +29,7 @@
 
 <script>
 	const approveBtns = document.querySelectorAll(".approve-btn");
+	const deleteBtns = document.querySelectorAll(".delete-btn");
 
 	approveBtns.forEach((approveBtn) => {
 		approveBtn.addEventListener("click", async (event) => {
@@ -55,6 +57,35 @@
 			}
 		});
 	});
+
+	deleteBtns.forEach((deleteBtn) => {
+		deleteBtn.addEventListener("click",async (e) => {
+			const btn = e.target;
+
+			const id = btn.getAttribute("data-id");
+
+			btn.classList.add("loading");
+
+			try {
+				
+				const response = await fetch(`http://localhost:3000/api/delete/${id}`,{
+					method:"DELETE"
+				});
+
+				const responseData = await response.json();
+				console.log(responseData);
+
+				btn.innerText = "DELETED";
+				btn.setAttribute("disabled",true);
+
+			} catch (error) {
+				console.error(error);
+			}
+			finally {
+				btn.classList.remove("loading")
+			}
+		})
+	})
 </script>
 
 <%- include("../partials/footer.ejs") %>

@@ -6,10 +6,12 @@ const router = express.Router();
 
 router.post("/add", quizControllers.addQuestion);
 
-router.get("/approve",quizControllers.getunapprovedQuestions)
+router.get("/approve", quizControllers.getunapprovedQuestions);
 
-router.get("/query",quizControllers.getQuestions)
+router.get("/query", quizControllers.getQuestions);
 
-router.patch("/approve/:id",quizControllers.approveQuestionById)
+router.patch("/approve/:id", quizControllers.approveQuestionById);
+
+router.delete("/delete/:id", quizControllers.deleteQuestion);
 
 module.exports = router;

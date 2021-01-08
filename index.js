@@ -31,10 +31,6 @@ app.get("/pages/query", (req, res) => {
 
 app.use("/api", quizRoutes);
 
-// app.post("/api/add", (req, res) => {
-// 	console.log(req.body);
-// });
-
 const port = 3000;
 
 mongoose

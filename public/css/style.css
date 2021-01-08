@@ -179,8 +179,8 @@ nav h1 {
 }
 
 .question-block .others > * {
-    padding: 10px;
-    font-size: 1rem;
+    padding: 5px;
+    font-size: .7rem;
 }
 
 .question-block .others .approve-btn {
@@ -189,6 +189,14 @@ nav h1 {
 
 .question-block .others .approve-btn:hover {
     background-color: rgba(27, 235, 27, 0.651);
+}
+
+.delete-btn{
+    background-color: rgba(139, 11, 11, 0.685);
+}
+
+.delete-btn:hover {
+    background-color: red;
 }
 
 .loading {

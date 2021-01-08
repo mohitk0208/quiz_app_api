@@ -98,7 +98,7 @@ const getQuestions = async (req, res) => {
 
 	const questions = results.map((r) => {
 		return {
-			question:r.question,
+			question: r.question,
 			category: r.category,
 			difficulty: r.difficulty,
 			type: r.type,
@@ -108,11 +108,16 @@ const getQuestions = async (req, res) => {
 	});
 
 	res.status(200).json({ results: questions });
+};
 
+const deleteQuestion = async (req, res) => {
+	const id = req.params.id;
 
+	res.json({ message: "deleted",id });
 };
 
 exports.addQuestion = addQuestion;
 exports.getunapprovedQuestions = getunapprovedQuestions;
 exports.approveQuestionById = approveQuestionById;
 exports.getQuestions = getQuestions;
+exports.deleteQuestion = deleteQuestion;

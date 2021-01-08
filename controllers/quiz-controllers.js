@@ -98,6 +98,7 @@ const getQuestions = async (req, res) => {
 
 	const questions = results.map((r) => {
 		return {
+			question:r.question,
 			category: r.category,
 			difficulty: r.difficulty,
 			type: r.type,

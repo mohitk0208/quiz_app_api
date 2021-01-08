@@ -21,6 +21,7 @@
 			<p class="difficulty"><%=q.difficulty %></p>
 			<button class="approve-btn" data-id="<%=q.id %>">APPROVE</button>
 			<button class="delete-btn" data-id="<%=q.id %>">DELETE</button>
+			<a class="edit-btn" href="/pages/edit/<%=q.id %>" data-id="<%=q.id %>">EDIT</a>
 		</div>
 	</div>
 
@@ -30,6 +31,7 @@
 <script>
 	const approveBtns = document.querySelectorAll(".approve-btn");
 	const deleteBtns = document.querySelectorAll(".delete-btn");
+	const editBtns = document.querySelectorAll('.edit-btn');
 
 	approveBtns.forEach((approveBtn) => {
 		approveBtn.addEventListener("click", async (event) => {
@@ -88,6 +90,7 @@
 			}
 		});
 	});
+
 </script>
 
 <%- include("../partials/footer.ejs") %>

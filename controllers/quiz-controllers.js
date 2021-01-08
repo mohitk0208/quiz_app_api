@@ -75,6 +75,26 @@ const approveQuestionById = async (req, res) => {
 	}
 };
 
+const getQuestionById = async(req,res) => {
+
+	const id = req.params.id;
+
+	let question;
+
+	try {
+		
+		question = await Question.findById(id);
+
+	} catch (error) {
+		// res.status(500).json({mesaage:"something went wrong"});
+
+		console.error(error);
+	}
+
+	res.json({question});
+
+}
+
 const getQuestions = async (req, res) => {
 	const { category, difficulty, no_of_questions } = req.query;
 
@@ -127,5 +147,6 @@ const deleteQuestion = async (req, res) => {
 exports.addQuestion = addQuestion;
 exports.getunapprovedQuestions = getunapprovedQuestions;
 exports.approveQuestionById = approveQuestionById;
+exports.getQuestionById = getQuestionById;
 exports.getQuestions = getQuestions;
 exports.deleteQuestion = deleteQuestion;

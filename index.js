@@ -29,6 +29,25 @@ app.get("/pages/query", (req, res) => {
 	res.render("pages/query");
 });
 
+app.get("/pages/edit/:id",async (req,res) => {
+	
+	const id = req.params.id;
+
+	let q;
+
+	try{
+		const response = await fetch(`http://localhost:3000/api/query/${id}`);
+
+		const q = await response.json();
+		console.log(responseData);
+	}catch(err) {
+		console.error(err);
+	}
+
+	res.render("pages/edit",{question:q});
+
+})
+
 app.use("/api", quizRoutes);
 
 const port = 3000;

@@ -113,7 +113,15 @@ const getQuestions = async (req, res) => {
 const deleteQuestion = async (req, res) => {
 	const id = req.params.id;
 
-	res.json({ message: "deleted",id });
+	try {
+		await Question.findByIdAndDelete(id);
+
+		res.json({ message: "deleted" });
+	} catch (error) {
+		res.status(500).json({ message: "not deleted", error: error });
+	}
+
+	// res.json({ message: "deleted",id });
 };
 
 exports.addQuestion = addQuestion;

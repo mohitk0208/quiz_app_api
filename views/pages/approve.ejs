@@ -41,12 +41,15 @@
 			btn.classList.add("loading");
 
 			try {
-				const response =  await fetch(`http://localhost:3000/api/approve/${id}`, {
-					method: "PATCH",
-                });
-                
-                const responseData = await response.json();
-                console.log(responseData);
+				const response = await fetch(
+					`http://localhost:3000/api/approve/${id}`,
+					{
+						method: "PATCH",
+					}
+				);
+
+				const responseData = await response.json();
+				console.log(responseData);
 
 				btn.innerText = "APPROVED";
 				btn.setAttribute("disabled", true);
@@ -59,7 +62,7 @@
 	});
 
 	deleteBtns.forEach((deleteBtn) => {
-		deleteBtn.addEventListener("click",async (e) => {
+		deleteBtn.addEventListener("click", async (e) => {
 			const btn = e.target;
 
 			const id = btn.getAttribute("data-id");
@@ -67,25 +70,24 @@
 			btn.classList.add("loading");
 
 			try {
-				
-				const response = await fetch(`http://localhost:3000/api/delete/${id}`,{
-					method:"DELETE"
+				const response = await fetch(`http://localhost:3000/api/delete/${id}`, {
+					method: "DELETE",
 				});
 
 				const responseData = await response.json();
 				console.log(responseData);
 
-				btn.innerText = "DELETED";
-				btn.setAttribute("disabled",true);
-
+				if (responseData.message === "deleted") {
+					btn.innerText = "DELETED";
+					btn.setAttribute("disabled", true);
+				}
 			} catch (error) {
 				console.error(error);
+			} finally {
+				btn.classList.remove("loading");
 			}
-			finally {
-				btn.classList.remove("loading")
-			}
-		})
-	})
+		});
+	});
 </script>
 
 <%- include("../partials/footer.ejs") %>

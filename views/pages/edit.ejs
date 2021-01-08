@@ -1,14 +1,14 @@
 <%- include('../partials/header.ejs',{title:"Quiz App | EDIT"}) %>
 
 <div class="form-container">
-	<h1 class="form-heading">ADD QUESTIONS</h1>
+	<h1 class="form-heading">EDIT QUESTION</h1>
 
-	<form class="add-form" action="/api/add" method="post" onsubmit="(e) => e.preventDefault()">
+	<form class="edit-form" action="/api/add" method="post" onsubmit="(e) => e.preventDefault()">
 
                 
         <div class="form-field">
             <label for="category">category</label>
-            <select name="category" id="category" required>
+            <select name="category" id="category" data-value="<%=question.category %>" required>
                 <option value="9">General Knowledge</option>
                 <option value="10">Entertainment - Books</option>
                 <option value="11">Entertainment - Film</option>
@@ -37,7 +37,7 @@
 
         <div class="form-field">
             <label for="difficulty">Difficulty</label>
-            <select name="difficulty" id="difficulty" required>
+            <select name="difficulty" id="difficulty" data-value="<%=question.difficulty %>" required>
                 <option value="easy">EASY</option>
                 <option value="medium">MEDIUM</option>
                 <option value="hard">HARD</option>
@@ -46,12 +46,12 @@
 
 		<div class="form-field">
             <label for="question">Question</label>
-            <input type="text" name="question" id="question" required>
+            <input type="text" name="question" id="question" value="<%=question.question %>" required>
         </div>
         
         <div class="form-field">
             <!-- <label for="type">Type</label> -->
-            <input type="hidden" name="type" value="multiple">
+            <input type="hidden" name="type" value="<%=question.type %>">
             <!-- <select name="type" id="type">
                 <option value="multiple">multiple</option>
             </select> -->
@@ -59,7 +59,7 @@
         
         <div class="form-field">
             <label for="correct_answer">Correct Answer</label>
-            <input type="text" name="correct_answer" id="correct_amswer" required>
+            <input type="text" name="correct_answer" id="correct_amswer" value="<%=question.correct_answer %>" required>
         </div>
 
         <div class="form-field">
@@ -67,13 +67,13 @@
 
             <ul class="incorrect_answers">
                 <li>
-                    <input type="text" name="incorrect_answer_1" id="" required>
+                    <input type="text" name="incorrect_answer_1" value="<%=question.incorrect_answers[0] %>" id="" required>
                 </li>
                 <li>
-                    <input type="text" name="incorrect_answer_2" id="" required>
+                    <input type="text" name="incorrect_answer_2" value="<%=question.incorrect_answers[1] %>" id="" required>
                 </li>
                 <li>
-                    <input type="text" name="incorrect_answer_3" id="" required>
+                    <input type="text" name="incorrect_answer_3" value="<%=question.incorrect_answers[2] %>" id="" required>
                 </li>
             </ul>
         </div>
@@ -82,5 +82,13 @@
         
 	</form>
 </div>
+
+<script>
+    const categorySelect = document.getElementById("category");
+    categorySelect.value = categorySelect.getAttribute("data-value");
+
+    const difficultySelect = document.getElementById("difficulty");
+    difficultySelect.value = difficultySelect.getAttribute("data-value")
+</script>
 
 <%- include("../partials/footer.ejs") %>

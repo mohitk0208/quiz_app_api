@@ -38,13 +38,13 @@ app.get("/pages/edit/:id",async (req,res) => {
 	try{
 		const response = await fetch(`http://localhost:3000/api/query/${id}`);
 
-		const q = await response.json();
-		console.log(responseData);
+		q = await response.json();
+		console.log(q);
 	}catch(err) {
 		console.error(err);
 	}
 
-	res.render("pages/edit",{question:q});
+	res.render("pages/edit",{question:q.question});
 
 })
 

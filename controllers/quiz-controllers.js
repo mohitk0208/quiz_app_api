@@ -1,5 +1,7 @@
 const Question = require("./../models/question");
 
+const functions = require("../functions");
+
 const addQuestion = async (req, res) => {
 	console.log(req.body);
 
@@ -138,22 +140,47 @@ const getQuestionById = async(req,res) => {
 }
 
 const getQuestions = async (req, res) => {
+
 	const { category, difficulty, no_of_questions } = req.query;
 
 	console.log(category, difficulty, no_of_questions);
 
-	const match = {};
-	if (category != 0) match.category = category;
-	if (difficulty !== "any") match.difficulty = difficulty;
-
+	let ids; // all the ids that match the query requirements
+	const match = {}; //conditions to match in the query
+	
+	//creating the match object for the find filter
+	if (category) match.category = category;
+	if (difficulty) match.difficulty = difficulty;
 	match.approved = true;
-
+	
 	console.log(match);
+
+	try {
+		// get the ids of document that pass the match upto 100 elements
+		ids = await Question.find(match,"_id",{limit:100}); 
+
+		console.log("all the matching ids",ids.length);
+		console.log(ids)
+	}
+	catch(err ) {
+		console.error(err);
+	}
+
+	let shuffledIds = functions.shuffle(ids); //shuffled the ids
+
+	//slice the shuffledIds array if the length is greater than total no_of_questions
+	if(shuffledIds.length > no_of_questions) {
+		shuffledIds = shuffledIds.slice(0,no_of_questions);
+	}
+
+	console.log("shuffledIds",shuffledIds.length);
+	console.log(shuffledIds);
 
 	let results;
 
 	try {
-		results = await Question.find(match);
+		//get all the documents that are in the shuffledIds list
+		results = await Question.find({'_id':{$in:shuffledIds}}); 
 	} catch (err) {
 		console.error(err);
 	}

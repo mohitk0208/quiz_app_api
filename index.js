@@ -29,11 +29,26 @@ app.get("/pages/query", (req, res) => {
 	res.render("pages/query");
 });
 
-app.use("/api", quizRoutes);
+app.get("/pages/edit/:id",async (req,res) => {
+	
+	const id = req.params.id;
 
-// app.post("/api/add", (req, res) => {
-// 	console.log(req.body);
-// });
+	let q;
+
+	try{
+		const response = await fetch(`http://localhost:3000/api/query/${id}`);
+
+		q = await response.json();
+		console.log(q);
+	}catch(err) {
+		console.error(err);
+	}
+
+	res.render("pages/edit",{question:q.question});
+
+})
+
+app.use("/api", quizRoutes);
 
 const port = 3000;
 

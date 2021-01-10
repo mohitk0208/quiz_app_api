@@ -157,7 +157,7 @@ const getQuestions = async (req, res) => {
 
 	try {
 		// get the ids of document that pass the match upto 100 elements
-		ids = await Question.find(match,"_id",{limit:100}); 
+		ids = await Question.find(match,"_id",{limit:500}); 
 
 		console.log("all the matching ids",ids.length);
 		console.log(ids)
@@ -166,7 +166,8 @@ const getQuestions = async (req, res) => {
 		console.error(err);
 	}
 
-	let shuffledIds = functions.shuffle(ids); //shuffled the ids
+	//shuffle the reverse of shuffled ids
+	let shuffledIds = functions.shuffle(functions.shuffle(ids).reverse()); //shuffled the ids
 
 	//slice the shuffledIds array if the length is greater than total no_of_questions
 	if(shuffledIds.length > no_of_questions) {
